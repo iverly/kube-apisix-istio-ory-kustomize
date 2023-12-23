@@ -4,7 +4,10 @@
   "description": "This is an example to deploy apisix as gateway with istio and the ory stack using kustomize",
   "scripts": {
     "kube:cluster:create": "k3d cluster create kube-apisix-istio-ory-kustomize -c ./config/k3d/config.yaml",
-    "kube:cluster:delete": "k3d cluster delete kube-apisix-istio-ory-kustomize"
+    "kube:cluster:delete": "k3d cluster delete kube-apisix-istio-ory-kustomize",
+    "kube:istio:check": "istioctl x precheck",
+    "kube:istio:apply": "kubectl apply -k ./kustomize/istio",
+    "kube:istio:delete": "kubectl delete -k ./kustomize/istio"
   },
   "author": "iverly <github@iverly.net>",
   "license": "Apache-2.0"
