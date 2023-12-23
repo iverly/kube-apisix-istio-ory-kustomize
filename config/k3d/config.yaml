@@ -1,0 +1,10 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+servers: 1
+agents: 3
+options:
+  k3s:
+    extraArgs:
+      - arg: --disable=traefik
+        nodeFilters:
+          - servers:*
