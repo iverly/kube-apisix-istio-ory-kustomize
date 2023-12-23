@@ -1,0 +1,7 @@
+{
+  "name": "kube-apisix-istio-ory-kustomize",
+  "version": "1.0.0",
+  "description": "This is an example to deploy apisix as gateway with istio and the ory stack using kustomize",
+  "author": "iverly <github@iverly.net>",
+  "license": "Apache-2.0"
+}
