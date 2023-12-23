@@ -1,0 +1,8 @@
+---
+# Source: apisix/charts/ingress-controller/templates/ingress-class.yaml
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: "apisix"
+spec:
+  controller: apisix.apache.org/apisix-ingress # fix: https://github.com/apache/apisix-ingress-controller/issues/1653

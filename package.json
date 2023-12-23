@@ -7,7 +7,9 @@
     "kube:cluster:delete": "k3d cluster delete kube-apisix-istio-ory-kustomize",
     "kube:istio:check": "istioctl x precheck",
     "kube:istio:apply": "kubectl apply -k ./kustomize/istio",
-    "kube:istio:delete": "kubectl delete -k ./kustomize/istio"
+    "kube:istio:delete": "kubectl delete -k ./kustomize/istio",
+    "kube:apisix:apply": "kubectl apply -k ./kustomize/apisix",
+    "kube:apisix:delete": "kubectl delete -k ./kustomize/apisix"
   },
   "author": "iverly <github@iverly.net>",
   "license": "Apache-2.0"
