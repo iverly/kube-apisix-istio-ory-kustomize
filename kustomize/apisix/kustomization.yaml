@@ -5,6 +5,7 @@ resources:
   - ./etcd/
   - ./ingress-controller/
   - configmap.yaml
+  - custom-resource-definition.yaml
   - deployment.yaml
   - namespace.yaml
   - service-admin.yaml
