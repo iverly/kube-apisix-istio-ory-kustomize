@@ -29,6 +29,7 @@ spec:
         app.kubernetes.io/managed-by: Helm
       annotations:
         checksum/token-secret: 3457e72ac0d10b660e9b3d5978cd057073c740ff84de40f98058371f01eae9ee
+        linkerd.io/inject: enabled
     spec:
       affinity:
         podAffinity:

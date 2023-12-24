@@ -38,6 +38,7 @@ spec:
     metadata:
       annotations:
         checksum/config: 920853ec74110e7e6a12e12e71ce3f33ed2b5c9822bf58c0174bc5c26192d5b7
+        linkerd.io/inject: enabled
       labels:
         app.kubernetes.io/name: ingress-controller
         app.kubernetes.io/instance: apisix
