@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - cluster-role-binding.yaml
+  - cluster-role.yaml
+  - config-map.yaml
+  - crds.yaml
+  - cron-job.yaml
+  - deployment.yaml
+  - mutating-webhook-configuration.yaml
+  - namespace.yaml
+  - role-binding.yaml
+  - role.yaml
+  - secret.yaml
+  - service-account.yaml
+  - service.yaml
+  - validating-webhook-configuration.yaml
