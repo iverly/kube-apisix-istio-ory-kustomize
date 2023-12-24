@@ -37,6 +37,7 @@ spec:
     metadata:
       annotations:
         checksum/config: 0c57ab9d950cb293bd0c8f5e642542aa7d13d998826029a2582cbd7a4b8b9855
+        linkerd.io/inject: enabled
       labels:
         app.kubernetes.io/name: apisix
         app.kubernetes.io/instance: apisix
