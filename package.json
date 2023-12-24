@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "This is an example to deploy apisix as gateway with linkerd and the ory stack using kustomize",
   "scripts": {
-    "kube:cluster:create": "k3d cluster create kube-apisix-linkerd-ory-kustomize -c ./config/k3d/config.yaml",
-    "kube:cluster:delete": "k3d cluster delete kube-apisix-linkerd-ory-kustomize",
+    "kube:cluster:create": "k3d cluster create kube-apisix-linkerd-ory -c ./config/k3d/config.yaml",
+    "kube:cluster:delete": "k3d cluster delete kube-apisix-linkerd-ory",
     "kube:linkerd:pre-install:check": "linkerd check --pre",
     "kube:linkerd:post-install:check": "linkerd check --proxy --namespace apisix",
     "kube:linkerd:apply": "kubectl apply -k ./kustomize/linkerd",
