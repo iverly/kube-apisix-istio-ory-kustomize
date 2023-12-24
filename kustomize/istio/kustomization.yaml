@@ -6,6 +6,7 @@ resources:
   - clusterrole.yaml
   - clusterrolebinding.yaml
   - configmap.yaml
+  - crds.yaml
   - default.yaml
   - deployment.yaml
   - istiod-injector-configmap.yaml
