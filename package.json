@@ -12,7 +12,9 @@
     "kube:apisix:apply": "kubectl apply -k ./kustomize/apisix",
     "kube:apisix:delete": "kubectl delete -k ./kustomize/apisix",
     "kube:vault:apply": "kubectl apply -k ./kustomize/vault",
-    "kube:vault:delete": "kubectl delete -k ./kustomize/vault"
+    "kube:vault:delete": "kubectl delete -k ./kustomize/vault",
+    "kube:cert-manager:apply": "kubectl apply -k ./kustomize/cert-manager",
+    "kube:cert-manager:delete": "kubectl delete -k ./kustomize/cert-manager"
   },
   "author": "iverly <github@iverly.net>",
   "license": "Apache-2.0"

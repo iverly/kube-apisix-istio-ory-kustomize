@@ -1,0 +1,59 @@
+---
+# Source: cert-manager-trust/templates/webhook.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: cert-manager-trust
+  labels:
+    app: cert-manager-trust
+    app.kubernetes.io/name: cert-manager-trust
+    helm.sh/chart: cert-manager-trust-v0.2.1
+    app.kubernetes.io/instance: cert-manager-trust
+    app.kubernetes.io/version: "v0.2.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 443
+      targetPort: 6443
+      protocol: TCP
+      name: webhook
+  selector:
+    app: cert-manager-trust
+---
+# Source: cert-manager-trust/templates/webhook.yaml
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: cert-manager-trust
+  labels:
+    app: cert-manager-trust
+    app.kubernetes.io/name: cert-manager-trust
+    helm.sh/chart: cert-manager-trust-v0.2.1
+    app.kubernetes.io/instance: cert-manager-trust
+    app.kubernetes.io/version: "v0.2.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    cert-manager.io/inject-ca-from: "cert-manager/cert-manager-trust"
+
+webhooks:
+  - name: trust.cert-manager.io
+    rules:
+      - apiGroups:
+          - "trust.cert-manager.io"
+        apiVersions:
+          - "*"
+        operations:
+          - CREATE
+          - UPDATE
+        resources:
+          - "*/*"
+    admissionReviewVersions: ["v1", "v1beta1"]
+    timeoutSeconds: 5
+    failurePolicy: Fail
+    sideEffects: None
+    clientConfig:
+      service:
+        name: cert-manager-trust
+        namespace: "cert-manager"
+        path: /validate

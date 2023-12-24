@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - config.yaml
+  - deployment.yaml
+  - mutating-webhook.yaml
+  - rbac.yaml
+  - service-account.yaml
+  - service.yaml
+  - validating-webhook.yaml
