@@ -10,7 +10,9 @@
     "kube:linkerd:apply": "kubectl apply -k ./kustomize/linkerd",
     "kube:linkerd:delete": "kubectl delete -k ./kustomize/linkerd",
     "kube:apisix:apply": "kubectl apply -k ./kustomize/apisix",
-    "kube:apisix:delete": "kubectl delete -k ./kustomize/apisix"
+    "kube:apisix:delete": "kubectl delete -k ./kustomize/apisix",
+    "kube:vault:apply": "kubectl apply -k ./kustomize/vault",
+    "kube:vault:delete": "kubectl delete -k ./kustomize/vault"
   },
   "author": "iverly <github@iverly.net>",
   "license": "Apache-2.0"
