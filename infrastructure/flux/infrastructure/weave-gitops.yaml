@@ -11,5 +11,5 @@ spec:
   wait: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: kube-apisix-linkerd-ory-kustomize
   path: ./infrastructure/weave-gitops
