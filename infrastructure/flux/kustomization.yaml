@@ -4,5 +4,6 @@ namespace: flux-system
 
 resources:
   - infrastructure/cert-manager.yaml
+  - infrastructure/linkerd-bootstrap.yaml
   - infrastructure/vault.yaml
   - infrastructure/weave-gitops.yaml
