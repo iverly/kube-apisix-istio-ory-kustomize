@@ -3,18 +3,8 @@
   "version": "1.0.0",
   "description": "This is an example to deploy apisix as gateway with linkerd and the ory stack using kustomize",
   "scripts": {
-    "kube:cluster:create": "k3d cluster create kube-apisix-linkerd-ory -c ./config/k3d/config.yaml",
-    "kube:cluster:delete": "k3d cluster delete kube-apisix-linkerd-ory",
-    "kube:linkerd:pre-install:check": "linkerd check --pre",
-    "kube:linkerd:post-install:check": "linkerd check --proxy --namespace apisix",
-    "kube:linkerd:apply": "kubectl apply -k ./kustomize/linkerd",
-    "kube:linkerd:delete": "kubectl delete -k ./kustomize/linkerd",
-    "kube:apisix:apply": "kubectl apply -k ./kustomize/apisix",
-    "kube:apisix:delete": "kubectl delete -k ./kustomize/apisix",
-    "kube:vault:apply": "kubectl apply -k ./kustomize/vault",
-    "kube:vault:delete": "kubectl delete -k ./kustomize/vault",
-    "kube:cert-manager:apply": "kubectl apply -k ./kustomize/cert-manager",
-    "kube:cert-manager:delete": "kubectl delete -k ./kustomize/cert-manager"
+    "kube:cluster:create": "terraform -chdir=terraform/provisioning-local-cluster apply -auto-approve",
+    "kube:cluster:delete": "terraform -chdir=terraform/provisioning-local-cluster destroy -auto-approve"
   },
   "author": "iverly <github@iverly.net>",
   "license": "Apache-2.0"
