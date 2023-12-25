@@ -1,0 +1,38 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: linkerd-control-plane
+  namespace: linkerd
+spec:
+  interval: 30m
+  targetNamespace: linkerd
+  dependsOn:
+    - name: linkerd-crds
+  releaseName: linkerd-control-plane
+  chart:
+    spec:
+      version: "1.x"
+      chart: linkerd-control-plane
+      sourceRef:
+        kind: HelmRepository
+        name: linkerd
+      interval: 12h
+  # https://artifacthub.io/packages/helm/linkerd2/linkerd-control-plane
+  valuesFrom:
+    - kind: Secret
+      name: linkerd-identity-issuer
+      valuesKey: ca.crt
+      targetPath: identityTrustAnchorsPEM
+  values:
+    proxy:
+      resources:
+        cpu:
+          request: 50m
+          limit: 100m
+        memory:
+          request: 64Mi
+          limit: 128Mi
+    identity:
+      issuer:
+        scheme: "kubernetes.io/tls"
