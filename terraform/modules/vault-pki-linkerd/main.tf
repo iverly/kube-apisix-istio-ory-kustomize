@@ -23,7 +23,7 @@ resource "vault_pki_secret_backend_config_urls" "this" {
 }
 
 resource "vault_policy" "this" {
-  name = "pki_policy"
+  name = "pki_linkerd_policy"
 
   policy = <<EOT
 path "pki_linkerd*" {
@@ -41,4 +41,7 @@ resource "vault_kubernetes_auth_backend_role" "this" {
   audience                         = "vault://vault-linkerd-issuer"
 
   token_ttl = 60
+  token_policies = [
+    vault_policy.this.name,
+  ]
 }
