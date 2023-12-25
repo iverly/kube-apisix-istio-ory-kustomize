@@ -4,6 +4,8 @@ namespace: cert-manager
 
 resources:
   - trust-manager/release.yaml
+  - vault-linkerd-issuer/issuer.yaml
+  - vault-linkerd-issuer/rbac.yaml
   - namespace.yaml
   - repository.yaml
   - release.yaml
