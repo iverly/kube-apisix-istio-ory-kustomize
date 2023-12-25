@@ -4,7 +4,8 @@
   "description": "This is an example to deploy apisix as gateway with linkerd and the ory stack using kustomize",
   "scripts": {
     "kube:cluster:create": "terraform -chdir=terraform/provisioning-local-cluster apply -auto-approve",
-    "kube:cluster:delete": "terraform -chdir=terraform/provisioning-local-cluster destroy -auto-approve"
+    "kube:cluster:destroy": "terraform -chdir=terraform/provisioning-local-cluster destroy -auto-approve",
+    "kube:cluster:delete": "k3d cluster delete kube-apisix-linkerd-ory"
   },
   "author": "iverly <github@iverly.net>",
   "license": "Apache-2.0"
