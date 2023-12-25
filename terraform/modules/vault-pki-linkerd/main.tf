@@ -38,7 +38,7 @@ resource "vault_kubernetes_auth_backend_role" "this" {
 
   bound_service_account_names      = ["cert-manager"]
   bound_service_account_namespaces = ["cert-manager"]
-  audience                         = "vault://cert-manager/vault-linkerd-issuer"
+  audience                         = "vault://vault-linkerd-issuer"
 
   token_ttl = 60
 }
