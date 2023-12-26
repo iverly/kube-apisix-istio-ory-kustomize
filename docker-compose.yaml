@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  # database
+  postgres:
+    container_name: postgres
+    image: bitnami/postgresql:14.1.0-debian-10-r31
+    restart: unless-stopped
+    environment:
+      - POSTGRESQL_PASSWORD=postgres
+    volumes:
+      - postgres_data:/bitnami/postgresql
+      - ./scripts/postgres/00-init.sql:/docker-entrypoint-initdb.d/00-init.sql
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres_data:
