@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: flux-system
 
 resources:
+  - infrastructure/apisix.yaml
   - infrastructure/cert-manager.yaml
   - infrastructure/linkerd-bootstrap.yaml
   - infrastructure/linkerd.yaml
