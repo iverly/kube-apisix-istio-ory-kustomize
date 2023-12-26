@@ -5,6 +5,7 @@ metadata:
 spec:
   interval: 50m
   targetNamespace: apisix
+  releaseName: apisix
   chart:
     spec:
       chart: apisix
