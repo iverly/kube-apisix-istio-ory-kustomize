@@ -34,5 +34,6 @@ spec:
           request: 64Mi
           limit: 128Mi
     identity:
+      externalCA: true
       issuer:
         scheme: "kubernetes.io/tls"
