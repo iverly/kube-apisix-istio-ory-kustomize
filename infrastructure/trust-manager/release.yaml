@@ -11,5 +11,5 @@ spec:
       version: "*"
       sourceRef:
         kind: HelmRepository
-        name: cert-manager
+        name: trust-manager
       interval: 12h
