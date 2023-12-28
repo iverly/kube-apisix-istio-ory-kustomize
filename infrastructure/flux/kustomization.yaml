@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: flux-system
 
 resources:
+  - apps/kratos.yaml
   - infrastructure/apisix.yaml
   - infrastructure/cert-manager.yaml
   - infrastructure/linkerd-bootstrap.yaml
