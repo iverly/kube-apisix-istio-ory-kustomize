@@ -31,6 +31,16 @@ The complete list of tools can be found in the `Brewfile`.
 
 # Getting Started
 
+## Initializing Terraform
+
+The first thing you need to do is to initialize Terraform:
+
+```bash
+pnpm run terraform:init
+```
+
+This will download the required Terraform plugins and modules on your local machine.
+
 ## Provisioning a Kubernetes cluster
 
 I've used [k3d](https://k3d.io/v5.6.0/#releases) to create a Kubernetes cluster with 1 master and 2 worker nodes.

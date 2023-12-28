@@ -5,6 +5,9 @@
   "scripts": {
     "docker:compose:up": "docker-compose up -d",
     "docker:compose:down": "docker-compose down",
+    "terraform:init": "pnpm run terraform:init:provisioning-local-cluster && pnpm run terraform:init:configuring-vault",
+    "terraform:init:provisioning-local-cluster": "terraform -chdir=terraform/provisioning-local-cluster init",
+    "terraform:init:configuring-vault": "terraform -chdir=terraform/configuring-vault init",
     "kube:cluster:create": "terraform -chdir=terraform/provisioning-local-cluster apply -auto-approve",
     "kube:cluster:destroy": "terraform -chdir=terraform/provisioning-local-cluster destroy -auto-approve",
     "kube:cluster:delete": "k3d cluster delete kube-apisix-linkerd-ory",
