@@ -14,6 +14,9 @@ spec:
       interval: 65m
   # https://github.com/hashicorp/vault-helm/blob/main/values.yaml
   values:
+    server:
+      annotations:
+        linkerd.io/inject: enabled
     ui:
       enabled: true
     injector:
