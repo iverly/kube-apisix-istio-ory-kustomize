@@ -20,3 +20,10 @@ module "vault-kratos-secrets" {
   secrets_cipher  = var.kratos_secrets_cipher
   smtp_url        = var.kratos_smtp_url
 }
+
+module "vault-oathkeeper-secrets" {
+  source = "../modules/vault-oathkeeper-secrets"
+
+  kv_mount_path        = module.vault-kv-mount.path
+  kubernetes_auth_path = module.vault-kubernetes-auth.path
+}
