@@ -1,0 +1,61 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kratos-migration
+  namespace: ory
+  labels:
+    app.kubernetes.io/name: kratos
+    app.kubernetes.io/instance: ory
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: kratos-migration
+        app.kubernetes.io/instance: ory
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/role: kratos
+        vault.hashicorp.com/agent-inject-secret-config: kv/data/applications/ory/kratos
+        vault.hashicorp.com/agent-inject-template-config: |
+          {{- with secret "kv/data/applications/ory/kratos" -}}
+            export DSN="{{ .Data.data.database_url }}"
+          {{- end }}
+    spec:
+      serviceAccountName: kratos-migration-job
+      automountServiceAccountToken: true
+      containers:
+        - name: kratos-migration
+          image: oryd/kratos:v1.0.0
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh", "-c"]
+          args:
+            [
+              "source /vault/secrets/config && kratos migrate sql -e --yes --config /etc/config/kratos.yaml",
+            ]
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsGroup: 65534
+            runAsNonRoot: true
+            runAsUser: 65534
+            seLinuxOptions:
+              level: s0:c123,c456
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: kratos-config-volume
+              mountPath: /etc/config
+              readOnly: true
+      restartPolicy: Never
+      volumes:
+        - name: kratos-config-volume
+          configMap:
+            name: kratos-config
+      shareProcessNamespace: false
+  backoffLimit: 10

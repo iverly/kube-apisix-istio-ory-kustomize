@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kratos-courier
+  labels:
+    app.kubernetes.io/component: courier
+    app.kubernetes.io/name: kratos
+    app.kubernetes.io/instance: ory
+  annotations:
+spec:
+  clusterIP: None
+  ports:
+    - port: 80
+      targetPort: http-public
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: kratos-courier
+    app.kubernetes.io/instance: ory
