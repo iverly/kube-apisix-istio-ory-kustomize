@@ -19,11 +19,6 @@ spec:
         name: linkerd
       interval: 12h
   # https://artifacthub.io/packages/helm/linkerd2/linkerd-control-plane
-  valuesFrom:
-    - kind: Secret
-      name: linkerd-identity-issuer
-      valuesKey: ca.crt
-      targetPath: identityTrustAnchorsPEM
   values:
     proxy:
       resources:
