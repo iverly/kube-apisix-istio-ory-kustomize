@@ -16,16 +16,23 @@ spec:
       interval: 65m
   # https://github.com/apache/apisix-helm-chart/blob/master/charts/apisix/values.yaml
   values:
-    apisix:
-      podAnnotations:
-        linkerd.io/inject: enabled
-    gateway:
+    podAnnotations:
+      linkerd.io/inject: enabled
+    service:
       type: LoadBalancer
+      externalTrafficPolicy: Cluster
     dashboard:
       enabled: true
+      podAnnotations:
+        linkerd.io/inject: enabled
     ingress-controller:
       enabled: true
+      podAnnotations:
+        linkerd.io/inject: enabled
       config:
         apisix:
           serviceNamespace: apisix
           serviceName: apisix-admin
+    etcd:
+      podAnnotations:
+        linkerd.io/inject: enabled
