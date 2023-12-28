@@ -41,6 +41,22 @@ pnpm run terraform:init
 
 This will download the required Terraform plugins and modules on your local machine.
 
+## Running external services
+
+I've used [Docker Compose](https://docs.docker.com/compose/) to run the external services like databases since the goal of this project is not managing databases. But you can use any other providers like [AWS RDS](https://aws.amazon.com/rds/) or [Google Cloud SQL](https://cloud.google.com/sql).
+
+> If you don't use the default docker compose or credentials, you will need to modify the terraform variables (cf. `terraform/configuring-vault/variables.tf`) to match with your configuration.
+
+> I use the `host.k3d.internal` DNS to access the databases from the Kubernetes cluster. If you are using another Kubernetes cluster, you will need to modify the `host.k3d.internal` DNS to match with your configuration.
+
+```bash
+docker-compose up -d
+```
+
+This will start the following services:
+
+- PostgreSQL (for Kratos)
+
 ## Provisioning a Kubernetes cluster
 
 I've used [k3d](https://k3d.io/v5.6.0/#releases) to create a Kubernetes cluster with 1 master and 2 worker nodes.
