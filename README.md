@@ -75,6 +75,8 @@ This will deploy the following components:
 
 ```bash
 pnpm run kube:cluster:create
+k3d kubeconfig merge kube-apisix-linkerd-ory
+export KUBECONFIG=~/.config/k3d/kubeconfig-kube-apisix-linkerd-ory.yaml
 ```
 
 ## Configuring Vault
