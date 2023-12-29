@@ -8,6 +8,7 @@ resources:
   - infrastructure/cert-manager.yaml
   - infrastructure/linkerd-bootstrap.yaml
   - infrastructure/linkerd.yaml
+  - infrastructure/ory-bootstrap.yaml
   - infrastructure/trust-manager.yaml
   - infrastructure/vault.yaml
   - infrastructure/weave-gitops.yaml

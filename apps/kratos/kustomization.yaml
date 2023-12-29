@@ -9,7 +9,6 @@ resources:
   - manifests/migration/job.yaml
   - manifests/migration/rbac.yaml
   - manifests/deployment.yaml
-  - manifests/namespace.yaml
   - manifests/rbac.yaml
   - manifests/services.yaml
 

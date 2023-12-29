@@ -2,12 +2,8 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kratos
+  name: ory-bootstrap
 spec:
-  dependsOn:
-    - name: linkerd
-    - name: vault
-    - name: ory-bootstrap
   interval: 1h
   retryInterval: 1m
   timeout: 5m
@@ -16,4 +12,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: kube-apisix-linkerd-ory-kustomize
-  path: ./apps/kratos
+  path: ./infrastructure/ory-bootstrap
