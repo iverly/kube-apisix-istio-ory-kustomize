@@ -1,0 +1,34 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: oathkeeper-maester
+  namespace: oathkeeper
+  labels:
+    app.kubernetes.io/name: oathkeeper-maester
+    app.kubernetes.io/instance: oathkeeper
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: oathkeeper-maester
+rules:
+  - apiGroups: ["oathkeeper.ory.sh"]
+    resources: ["rules"]
+    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch", "create", "patch", "update"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: oathkeeper-maester
+subjects:
+  - kind: ServiceAccount
+    name: oathkeeper-maester
+    namespace: oathkeeper
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: oathkeeper-maester

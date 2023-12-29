@@ -1,0 +1,59 @@
+version: v0.40.1
+
+log:
+  level: info
+  format: json
+  leak_sensitive_values: false
+
+serve:
+  api:
+    host: 0.0.0.0
+    port: 4456
+
+errors:
+  fallback:
+    - json
+  handlers:
+    json:
+      enabled: true
+      config:
+        verbose: false
+
+access_rules:
+  matching_strategy: regexp
+  repositories:
+    - file:///etc/rules/access-rules.json
+
+authenticators:
+  anonymous:
+    enabled: true
+    config:
+      subject: guest
+  cookie_session:
+    enabled: true
+    config:
+      check_session_url: http://kratos-public.ory.svc.cluster.local/sessions/whoami
+      preserve_path: true
+      extra_from: "@this"
+      subject_from: "identity.id"
+      only:
+        - ory_kratos_session
+  noop:
+    enabled: true
+
+authorizers:
+  allow:
+    enabled: true
+
+mutators:
+  noop:
+    enabled: true
+  id_token:
+    enabled: true
+    config:
+      issuer_url: http://oathkeeper.ory.svc.cluster.local
+      jwks_url: file:///vault/secrets/jwks.json
+      claims: |
+        {
+          "session": {{ .Extra | toJson }}
+        }

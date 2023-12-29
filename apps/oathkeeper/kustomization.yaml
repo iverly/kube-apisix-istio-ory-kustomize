@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: ory
+
+resources:
+  - manifests/maester/configmap.yaml
+  - manifests/maester/crds.yaml
+  - manifests/maester/deployment.yaml
+  - manifests/maester/rbac.yaml
+  - manifests/deployment.yaml
+  - manifests/rbac.yaml
+  - manifests/service.yaml
+
+configMapGenerator:
+  - name: oathkeeper-config
+    files:
+      - config/oathkeeper.yaml
