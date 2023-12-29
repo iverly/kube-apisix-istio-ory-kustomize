@@ -15,7 +15,7 @@ data "jwks_from_key" "this" {
 
 resource "vault_kv_secret_v2" "this" {
   mount               = var.kv_mount_path
-  name                = "applications/ory/keto/jwks"
+  name                = "applications/ory/oathkeeper/jwks"
   delete_all_versions = true
 
   data_json = data.jwks_from_key.this.jwks
