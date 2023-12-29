@@ -4,6 +4,7 @@ namespace: flux-system
 
 resources:
   - apps/kratos.yaml
+  - apps/oathkeeper.yaml
   - infrastructure/apisix.yaml
   - infrastructure/cert-manager.yaml
   - infrastructure/linkerd-bootstrap.yaml
