@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: flux-system
 
 resources:
+  - apps/kratos-self-service-ui-node.yaml
   - apps/kratos.yaml
   - apps/oathkeeper.yaml
   - infrastructure/apisix.yaml
