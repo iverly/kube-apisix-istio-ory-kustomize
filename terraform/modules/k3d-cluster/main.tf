@@ -9,4 +9,12 @@ resource "k3d_cluster" "this" {
       node_filters = ["servers:*"]
     }
   }
+
+  port {
+    host_port      = 80
+    container_port = 80
+    node_filters = [
+      "loadbalancer",
+    ]
+  }
 }
