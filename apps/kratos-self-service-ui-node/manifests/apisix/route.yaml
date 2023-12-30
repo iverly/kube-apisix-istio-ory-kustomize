@@ -5,7 +5,7 @@ metadata:
   name: kratos-selfservice-ui-node
 spec:
   http:
-    - name: foo
+    - name: kratos-selfservice-ui-node
       match:
         hosts:
           - auth.127.0.0.1.sslip.io

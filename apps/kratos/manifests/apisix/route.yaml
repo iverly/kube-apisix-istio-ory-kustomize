@@ -5,7 +5,7 @@ metadata:
   name: kratos
 spec:
   http:
-    - name: foo
+    - name: kratos-public
       match:
         hosts:
           - identity.127.0.0.1.sslip.io
