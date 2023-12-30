@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: ory
 
 resources:
-  - manifests/maester/configmap.yaml
   - manifests/maester/crds.yaml
   - manifests/maester/deployment.yaml
   - manifests/maester/rbac.yaml
