@@ -11,7 +11,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - port: 4433
       targetPort: http-public
       protocol: TCP
       name: http
@@ -31,7 +31,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - port: 4434
       targetPort: http-admin
       protocol: TCP
       name: http
