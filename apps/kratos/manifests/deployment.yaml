@@ -43,9 +43,9 @@ spec:
           image: oryd/kratos:v1.0.0
           imagePullPolicy: IfNotPresent
           command: ["/bin/sh", "-c"]
-          args:
-            [
-              "source /vault/secrets/config && kratos serve all --config /etc/config/kratos.yaml",
+          args: [
+              "source /vault/secrets/config && kratos serve all --config /etc/config/kratos.yaml --dev",
+              # run kratos as dev mode because we don't have https
             ]
           volumeMounts:
             - name: kratos-config-volume
