@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-dump
+  namespace: ory
+  labels:
+    app.kubernetes.io/name: http-dump
+    app.kubernetes.io/instance: http-dump
+  annotations:
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: http-dump
+      app.kubernetes.io/instance: http-dump
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: http-dump
+        app.kubernetes.io/instance: http-dump
+      annotations:
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: http-dump
+          image: "nomadscafe.sakuracr.jp/http-dump-request"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /nogzip/live
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /nogzip/live
+              port: http
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsGroup: 10000
+            runAsNonRoot: true
+            runAsUser: 10000
+            seLinuxOptions:
+              level: s0:c123,c456
+            seccompProfile:
+              type: RuntimeDefault
+      securityContext:
+        fsGroup: 10000
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 10000
+        runAsNonRoot: true
+        runAsUser: 10000
+        seccompProfile:
+          type: RuntimeDefault
+        supplementalGroups: []
+        sysctls: []

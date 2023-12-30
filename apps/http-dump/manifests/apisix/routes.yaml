@@ -1,0 +1,36 @@
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: http-dump
+spec:
+  http:
+    - name: anonymous
+      match:
+        hosts:
+          - http-dump.127.0.0.1.sslip.io
+        paths:
+          - "/anonymous"
+      backends:
+        - serviceName: http-dump
+          servicePort: 3000
+    - name: protected
+      match:
+        hosts:
+          - http-dump.127.0.0.1.sslip.io
+        paths:
+          - "/protected"
+      backends:
+        - serviceName: http-dump
+          servicePort: 3000
+      plugins:
+        - name: forward-auth
+          enable: true
+          config:
+            uri: "http://oathkeeper-api.ory.svc.cluster.local:4456/decisions/protected"
+            request_headers:
+              - "Cookie"
+            upstream_headers:
+              - "Authorization"
+            client_headers:
+              - "Location"
