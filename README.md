@@ -65,13 +65,19 @@ You can also use other tools like [kind](https://kind.sigs.k8s.io/) or [minikube
 
 When the cluster is ready, the terraform will install [Flux](https://fluxcd.io/) automatically and it will start to sync the cluster with the config repository (`infrastructure/flux`).
 
-This will deploy the following components:
+This will deploy the following infrastructure components:
 
 - [Linkerd](https://linkerd.io/) as the service mesh
 - [APISIX](https://apisix.apache.org) as the gateway and ingress controller
 - [Vault](https://www.vaultproject.io/) as the secrets manager
 - [Cert Manager](https://cert-manager.io/) as the certificate manager with a Vault issuer
 - [Weave GitOps](https://docs.gitops.weave.works/docs/intro-weave-gitops/) as the GitOps UI for Flux
+
+and the following applications:
+
+- [Kratos](https://www.ory.sh/kratos/docs/) as the identity provider
+- [Oathkeeper](https://www.ory.sh/oathkeeper/docs/) as the identity and access controller
+- [Kratos Self Service UI](https://github.com/ory/kratos-selfservice-ui-node) as the self service UI for Kratos
 
 ```bash
 pnpm run kube:cluster:create
@@ -116,6 +122,24 @@ kubectl port-forward -n flux-system service/weave-gitops 9001:9001
 Open your browser and go to http://localhost:9001 to check the status of the cluster.
 
 > Default username and password is `admin` and `flux` respectively.
+
+## Accessing the applications
+
+Once the cluster is ready, you can access the applications using the following links:
+
+- [Kratos Self Service UI](http://auth.127.0.0.1.sslip.io)
+- [Kratos Public API](http://identity.127.0.0.1.sslip.io/kratos/)
+
+For the infrastructure components, you will have to create a port-forward to access them:
+
+| Command                                                              | Username | Password            |
+| -------------------------------------------------------------------- | -------- | ------------------- |
+| `kubectl port-forward -n linkerd-viz service/web 8084:8084`          | `N/A`    | `N/A`               |
+| `kubectl port-forward -n apisix service/apisix-dashboard 9000:80`    | `admin`  | `admin`             |
+| `kubectl port-forward -n vault service/vault 8200:8200`              | `N/A`    | `<your-root-token>` |
+| `kubectl port-forward -n flux-system service/weave-gitops 9001:9001` | `admin`  | `flux`              |
+
+> The `N/A` means that you don't need to provide any username or password.
 
 # Contributing
 
