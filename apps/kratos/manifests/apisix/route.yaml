@@ -1,0 +1,23 @@
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: kratos
+spec:
+  http:
+    - name: foo
+      match:
+        hosts:
+          - identity.127.0.0.1.sslip.io
+        paths:
+          - "/kratos/*"
+      backends:
+        - serviceName: kratos-public
+          servicePort: 4433
+      plugins:
+        - name: proxy-rewrite
+          enable: true
+          config:
+            regex_uri:
+              - "^/kratos/(.*)"
+              - "/$1"

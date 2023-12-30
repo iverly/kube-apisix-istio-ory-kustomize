@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: ory
 
 resources:
+  - manifests/apisix/route.yaml
   - manifests/courier/rbac.yaml
   - manifests/courier/service.yaml
   - manifests/courier/statefulset.yaml
