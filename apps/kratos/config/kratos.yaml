@@ -6,7 +6,7 @@ serve:
   admin:
     port: 4434
   public:
-    base_url: http://identity.127.0.0.1.sslip.io/kratos/
+    base_url: http://kratos-public.ory.svc.cluster.local:4433
     port: 4433
 
 selfservice:
